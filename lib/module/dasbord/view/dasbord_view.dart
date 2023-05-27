@@ -8,97 +8,93 @@ class DasbordView extends StatefulWidget {
   Widget build(context, DasbordController controller) {
     controller.view = this;
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10.0),
-                child: const Header(),
-              ),
-              const Cari(),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Recent Book",
-                      style: TextStyle(
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(6),
+            color: Colors.grey[200],
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Header(),
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        itemCount: 2,
+                      const Cari(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const Text(
+                        "Recent Book",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      SingleChildScrollView(
+                        controller: ScrollController(),
                         scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.zero,
-                        clipBehavior: Clip.none,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                width: 220,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(
-                                      13,
+                        child: Row(
+                          children: List.generate(2, (index) {
+                            return SizedBox(
+                              height: 200.0,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 250,
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(12.0),
+                                      ),
+                                      border: Border.all(
+                                        color: const Color(0xFFBDBDBD),
+                                      ),
                                     ),
-                                  ),
-                                  border: Border.all(
-                                    color: const Color(0xFfEDEDED),
-                                    width: 1,
-                                  ),
-                                ),
-                                child: SizedBox(
-                                  height: 100.0,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8),
                                           child: Image.network(
-                                            width: 100,
                                             "https://images.unsplash.com/flagged/photo-1559502867-c406bd78ff24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
                                             fit: BoxFit.cover,
                                           ),
-                                        ),
-                                        const Text(
-                                          "text",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
+                                        )
                                       ],
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                            ],
-                          );
-                        },
+                            );
+                          }),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -116,36 +112,40 @@ class Cari extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        height: 55,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.grey[400],
-          borderRadius: const BorderRadius.all(
-            Radius.circular(
-              15,
-            ),
+    return Container(
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            20,
           ),
         ),
-        child: Center(
-          child: TextField(
-            style: TextStyle(
-              color: Colors.grey[800],
-            ),
-            decoration: InputDecoration(
-              hintText: "Find Your Favorite Book",
-              suffixIcon: Icon(
+      ),
+      child: Center(
+        child: TextField(
+          style: TextStyle(
+            color: Colors.grey[800],
+          ),
+          decoration: InputDecoration(
+            hintText: "Find Your Favorite Book",
+            contentPadding: const EdgeInsets.all(20),
+            suffixIcon: Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: const BoxDecoration(
+                color: Color(0xff098B5C),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+              ),
+              child: const Icon(
                 Icons.search,
-                color: Colors.grey[600],
+                color: Colors.white,
               ),
-              border: InputBorder.none,
-              hintStyle: TextStyle(
-                color: Colors.grey[600],
-              ),
+            ),
+            border: InputBorder.none,
+            hintStyle: TextStyle(
+              color: Colors.grey[600],
             ),
           ),
         ),
@@ -170,24 +170,24 @@ class Header extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: 10.0,
+          width: 13,
         ),
         const Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hallo Sarah",
-                style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 5,
+                "Hello Sarah,",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 "Good Morning",
                 style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.grey,
+                  fontSize: 16,
+                  color: Color(0xffBDBDBD),
                 ),
               ),
             ],
@@ -197,7 +197,7 @@ class Header extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(
             Icons.list,
-            size: 24.0,
+            size: 30,
           ),
         ),
       ],
