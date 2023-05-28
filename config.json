@@ -3,6 +3,7 @@
     "modules": [
         "dasbord",
         "detail",
-        "bottom"
+        "bottom",
+        "Recentbook"
     ]
 }

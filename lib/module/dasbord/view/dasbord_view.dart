@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:desain_buku_app/core.dart';
-import '../controller/dasbord_controller.dart';
+
+import '../widget/category_picker.dart';
 
 class DasbordView extends StatefulWidget {
   const DasbordView({Key? key}) : super(key: key);
 
   Widget build(context, DasbordController controller) {
     controller.view = this;
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        controller: ScrollController(),
+        child: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(6),
             color: Colors.grey[200],
-            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -26,19 +26,35 @@ class DasbordView extends StatefulWidget {
                       bottomLeft: Radius.circular(25),
                     ),
                   ),
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Header(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Cari(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      RecentbookView()
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const Menutengah(),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Header(),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      const Cari(),
-                      const SizedBox(
-                        height: 15,
-                      ),
                       const Text(
-                        "Recent Book",
+                        "Trending Now",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -51,48 +67,61 @@ class DasbordView extends StatefulWidget {
                         controller: ScrollController(),
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          children: List.generate(2, (index) {
-                            return SizedBox(
-                              height: 200.0,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 250,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(12.0),
-                                      ),
-                                      border: Border.all(
-                                        color: const Color(0xFFBDBDBD),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8),
+                          children: List.generate(10, (index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 150.0,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 120.0,
+                                        color: Colors.transparent,
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
                                           child: Image.network(
                                             "https://images.unsplash.com/flagged/photo-1559502867-c406bd78ff24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
+                                            width: 200.0,
+                                            height: 200.0,
                                             fit: BoxFit.cover,
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(
-                                    width: 10.0,
+                                ),
+                                const SizedBox(
+                                  height: 9.0,
+                                ),
+                                const Text(
+                                  "Guy Kawasaki",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xffBDBDBD),
                                   ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                const Text(
+                                  "Enchantment",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
                             );
                           }),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -103,6 +132,41 @@ class DasbordView extends StatefulWidget {
 
   @override
   State<DasbordView> createState() => DasbordController();
+}
+
+class Menutengah extends StatelessWidget {
+  const Menutengah({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return QCategoryPicker(
+      items: const [
+        {
+          "label": "All Books",
+          "value": "allbooks",
+        },
+        {
+          "label": "Comic",
+          "value": "comic",
+        },
+        {
+          "label": "Novel",
+          "value": "novel",
+        },
+        {
+          "label": "Mangga",
+          "value": "mangga",
+        },
+        {
+          "label": "Fairy Tales",
+          "value": "fairytales",
+        }
+      ],
+      onChanged: (index, label, value, item) {},
+    );
+  }
 }
 
 class Cari extends StatelessWidget {

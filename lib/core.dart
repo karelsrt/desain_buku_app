@@ -9,4 +9,6 @@ export 'package:desain_buku_app/module/dasbord/controller/dasbord_controller.dar
 export 'package:desain_buku_app/module/dasbord/view/dasbord_view.dart';
 export 'package:desain_buku_app/module/detail/controller/detail_controller.dart';
 export 'package:desain_buku_app/module/detail/view/detail_view.dart';
+export 'package:desain_buku_app/module/Recentbook/controller/Recentbook_controller.dart';
+export 'package:desain_buku_app/module/Recentbook/view/Recentbook_view.dart';
 export 'state_util.dart';
