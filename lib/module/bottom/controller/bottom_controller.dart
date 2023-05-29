@@ -9,6 +9,7 @@ class BottomController extends State<BottomView> implements MvcController {
   @override
   void initState() {
     instance = this;
+
     super.initState();
   }
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:desain_buku_app/core.dart';
 
-import '../widget/category_picker.dart';
-
 class DasbordView extends StatefulWidget {
   const DasbordView({Key? key}) : super(key: key);
 
@@ -48,80 +46,7 @@ class DasbordView extends StatefulWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Trending Now",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      SingleChildScrollView(
-                        controller: ScrollController(),
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(10, (index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 150.0,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 120.0,
-                                        color: Colors.transparent,
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          child: Image.network(
-                                            "https://images.unsplash.com/flagged/photo-1559502867-c406bd78ff24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
-                                            width: 200.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 9.0,
-                                ),
-                                const Text(
-                                  "Guy Kawasaki",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Color(0xffBDBDBD),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                const Text(
-                                  "Enchantment",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            );
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                const TreadingnowView()
               ],
             ),
           ),
